@@ -1,0 +1,61 @@
+[
+    {
+        "id": "1",
+        "nombre":"Vruce",
+        "precio":3100,
+        "tipo": "torta",
+        "cantidad": 0,
+        "image" : "https://ibb.co/mq0F7b5"
+    },
+    {
+        "id": "2",
+        "nombre":"Cabsha",
+        "precio":2800,
+        "tipo": "tarta",
+        "cantidad": 0,
+        "image":"https://ibb.co/D4R4GKS"
+    },
+    {
+        "id": "3",
+        "nombre":"Torta de Cumpleaños",
+        "precio":2400,
+        "tipo": "torta",
+        "cantidad": 0,
+        "image":"https://ibb.co/SxjqPqB"
+    },
+    {
+        "id": "4",
+        "nombre":"Marquisse Franui",
+        "precio":3000,
+        "tipo": "torta",
+        "cantidad": 0,
+        "image":"https://ibb.co/7pn0FZm"
+    },
+    {
+        "id": "5",
+        "nombre":"Lemon Pie",
+        "precio":2100,
+        "tipo": "tarta",
+        "cantidad": 0,
+        "image":"/https://ibb.co/26Jk4hw"
+    },
+    {
+        "id": "6",
+        "nombre":"Chocotorta",
+        "precio":2800,
+        "tipo": "torta",
+        "cantidad": 0,
+        "image":"https://ibb.co/YNNh6HL"
+    }
+]
+
+
+
+
+
+
+
+
+
+
+
