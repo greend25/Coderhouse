@@ -58,7 +58,7 @@ function pintarDom(products) {
             <img class="item-image" src="${p.image}">
             <div class="item-details">
             <h3> ${p.nombre} </h3>
-            <p> $${p.precio} </p>
+            <p> ${p.precio} </p>
             <button data-id="${p.id}" class="item-button btn btn-primary addToCart">AÑADIR AL CARRITO</button>
             </div>
             </div>
@@ -78,6 +78,7 @@ const addCart = e => {
 
 // mostrar en el carrito los productos 
 const setCarrito = objeto => {
+    console.log(objeto);
     const producto = {
         id: objeto.querySelector("button").dataset.id,
         nombre: objeto.querySelector("h3").textContent,
@@ -101,8 +102,7 @@ const pintarCarrito = () => {
         templateCarrito.querySelector("th").textContent = producto.id
         templateCarrito.querySelectorAll("td")[0].textContent = producto.nombre
         templateCarrito.querySelectorAll("td")[1].textContent = producto.cantidad
-
-        templateCarrito.querySelector("span").textContent = producto.cantidad * producto.precio  // total de cada producto
+        templateCarrito.querySelector("span").textContent = producto.cantidad * producto.precio // total de cada producto
 
          //botones aumentar y disminuir cantidad
         templateCarrito.querySelector('.btn-info').dataset.id = producto.id
@@ -137,9 +137,9 @@ const pintarFooter = () => {
         return
     }
 
-    // sumar cantidadidad y sumar totales
+    // sumar cantidad y sumar totales
     const nCantidad = Object.values(carrito).reduce((acc, {cantidad}) => acc + cantidad, 0)
-    const nPrecio = Object.values(carrito).reduce((acc, {cantidad, precio}) => acc + precio * cantidad, 0) 
+    const nPrecio = Object.values(carrito).reduce((acc, {cantidad, precio}) => acc + parseInt(precio) * parseInt(cantidad), 0) 
 
     templateFooter.querySelectorAll('td')[0].textContent = nCantidad // cantidad de productos en el carrito
     templateFooter.querySelector('span').textContent = nPrecio // total del carrito
