@@ -6,11 +6,11 @@ const itemsCarrito = document.getElementById('items-carrito')
 const footer = document.getElementById('footer')
 const carritoNav = document.querySelector(".cart")
 const fragment = document.createDocumentFragment()
+const header = document.querySelector(".info")
 
 let carrito = {}
 
 var entrega = dayjs().add(3, 'day') // librería Day JS para mostrar a partir de cuando estará listo para retirar el pedido
-console.log(entrega.format("DD/MM"))
 
 document.addEventListener('DOMContentLoaded', e => { 
     fetchData() 
@@ -43,6 +43,9 @@ const fetchData = async() => { // cargar los productos desde un archivo json
     const data = await res.json()
     pintarDom(data)
 }
+
+// Uso de libreria Day JS para mostrar la fecha de entrega
+header.innerHTML = ` Agenda abierta! Tu pedido estará listo para retirar el ${entrega.format("DD/MM")}`
 
 // Pintar productos
 function pintarDom(products) {
@@ -103,6 +106,15 @@ const pintarCarrito = () => {
         templateCarrito.querySelectorAll("td")[0].textContent = producto.nombre
         templateCarrito.querySelectorAll("td")[1].textContent = producto.cantidad
         templateCarrito.querySelector("span").textContent = producto.cantidad * producto.precio // total de cada producto
+        Swal.fire({ 
+            title: `Añadiste un producto al carrito`,
+            icon: "success",
+            iconColor: "#f8c097",
+            width: 600,
+            padding: '3em',
+            color: '#842517',
+            confirmButtonColor: '#842517',
+          })
 
          //botones aumentar y disminuir cantidad
         templateCarrito.querySelector('.btn-info').dataset.id = producto.id
@@ -111,17 +123,9 @@ const pintarCarrito = () => {
         const clone = templateCarrito.cloneNode(true)
         fragment.appendChild(clone)
 
-        Toastify({ // librería Toastify para mostrar que producto se añadió al carrito
-            text: `Añadiste ${producto.nombre} al carrito. Listo para retirar el ${entrega.format("DD/MM")}`,
-            duration: 2000,
-            gravity: "bottom",
-            position: "right",
-            newWindow: true,
-            style: {
-                background: " #f8c097",
-              },
-        }).showToast();
+        
     })
+    
     itemsCarrito.appendChild(fragment)
     pintarFooter()
 
@@ -159,9 +163,9 @@ const pintarFooter = () => {
 
 //funcionalidad de los botones aumentar y disminuir cantidad
 const accionBtn = e => {
-    // console.log(e.target);
+
     if (e.target.classList.contains("btn-info")) {
-        // console.log(carrito[e.target.dataset.id])
+
         const producto = carrito[e.target.dataset.id]
         producto.cantidad++
         carrito[e.target.dataset.id] = {...producto}
